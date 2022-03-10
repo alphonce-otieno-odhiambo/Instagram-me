@@ -13,8 +13,8 @@ import { HomeIcon} from "@heroicons/react/solid"
 
 function Header() {
   return (
-    <div>
-        <div className='flex justify-between max-w-6xl bg-white mx-5 lg:mx-auto'>
+    <div className='shadow-sm border-b bg-white sticky top-0 z-50'>
+        <div className='flex justify-between max-w-6lg bg-white mx-5 lg:mx-auto my-2'>
         
           <div className='relative hidden lg:inline-grid w-24 h-19.5 cursor-pointer'>
             <Image src="https://links.papareact.com/ocw"
@@ -38,7 +38,12 @@ function Header() {
           <div className='flex item-center justify-end space-x-4'>
           <HomeIcon className='navBtns'/>
           <MenuIcon className=' h-10 md:hidden cursor-pointer'/>
-          <PaperAirplaneIcon className='navBtns'/>
+
+          <div className='relative navBtns'>
+          <PaperAirplaneIcon className='navBtns rotate-45'/>
+            <div className='absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex item-center animate-pulse justify-center text-white'>4</div>
+          </div>
+          
           <PlusCircleIcon className='navBtns'/>
           <UserGroupIcon className='navBtns'/>
           <HeartIcon className='navBtns'/>
