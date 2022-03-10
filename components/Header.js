@@ -16,7 +16,7 @@ function Header() {
     <div>
         <div className='flex justify-between max-w-6xl bg-white mx-5 lg:mx-auto'>
         
-          <div className='relative hidden lg:inline-grid w-24 cursor-pointer'>
+          <div className='relative hidden lg:inline-grid w-24 h-19.5 cursor-pointer'>
             <Image src="https://links.papareact.com/ocw"
             layout="fill"
             objectFit='contain' />       
@@ -36,8 +36,13 @@ function Header() {
           </div>
           </div>
           <div className='flex item-center justify-end space-x-4'>
-          <HomeIcon className='w-10 h-10'/>
-          <MenuIcon className='w-10 h-10'/>
+          <HomeIcon className='navBtns'/>
+          <MenuIcon className=' h-10 md:hidden cursor-pointer'/>
+          <PaperAirplaneIcon className='navBtns'/>
+          <PlusCircleIcon className='navBtns'/>
+          <UserGroupIcon className='navBtns'/>
+          <HeartIcon className='navBtns'/>
+          <img className='h-10 rounded-full cursor-pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfZl1gpsXj18vbKomyh7dbjTH7OglE3IPh3v5OdkMomuvxRj_C8lKymIQtgdhmRI84gsM&usqp=CAU" alt='profile pic'/>
           </div>
          
         </div>           
