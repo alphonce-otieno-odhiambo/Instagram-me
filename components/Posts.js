@@ -13,7 +13,7 @@ caption :"Subscribe and destroy the like btn"
 },
 {
   id:"123",
-  usename: "alphonce",
+  username: "alphonce",
   userImg:"https://links.papareact.com/3ke" ,
   img :"https://links.papareact.com/ocw",
   caption :"Subscribe and destroy the like btn"
@@ -35,11 +35,7 @@ function Posts() {
         ))
       }
      
-      <Post/>
-      <Post/>
-      <Post/>
-      <Post/>
-      <Post/>
+      
       
     </div>
   )
