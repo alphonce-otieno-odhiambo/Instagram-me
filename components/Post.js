@@ -21,6 +21,7 @@ function Post({id,username,userImg,img ,caption}) {
             <DotsHorizontalIcon className='h-5'/>
         </div>
         {/**image */}
+        <img src={img} className="object-cover w-full" alt=''/>
         {/**button */}
         {/**caption */}
         {/**contents */}
