@@ -8,7 +8,7 @@ function Miniprofile() {
 
              <div className='flex-1 mx-4'>
                  <h2 className='font-bold'>Alphonce</h2>
-                 <h4 className='text-sm text-grey-400'>Welcome to instagram me</h4>
+                 <h4 className='text-sm text-gray-400'>Welcome to instagram me</h4>
              </div>
              <button className='text-blue-400 text-sm font-semibold'>Sign out</button>
     </div>
