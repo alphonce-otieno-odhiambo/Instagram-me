@@ -15,7 +15,7 @@ caption :"Subscribe and destroy the like btn"
   id:"123",
   username: "alphonce",
   userImg:"https://links.papareact.com/3ke" ,
-  img :"https://links.papareact.com/ocw",
+  img :"https://links.papareact.com/3ke",
   caption :"Subscribe and destroy the like btn"
   
   }
