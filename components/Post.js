@@ -23,13 +23,13 @@ function Post({id,username,userImg,img ,caption}) {
         {/**image */}
         <img src={img} className="object-cover w-full" alt=''/>
         {/**button */}
-        <div>
-           <HeartIcon className='btn'/> 
-           <ChatIcon/>
-           <PaperAirplaneIcon/>
-           <div>
-               <BookmarkIcon/>
-           </div>
+        <div className='flex justify-between px-4 pt-4 p-3'>
+            <div className='flex space-x-3 '>
+                <HeartIcon className='btn'/> 
+                <ChatIcon className='btn'/>
+                <PaperAirplaneIcon className='btn'/>
+            </div>
+            <BookmarkIcon className='btn'/>          
         </div>
         {/**caption */}
         {/**contents */}
