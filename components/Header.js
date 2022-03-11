@@ -10,8 +10,11 @@ import {
   
 } from "@heroicons/react/outline";
 import { HomeIcon} from "@heroicons/react/solid"
+import { signIn,signOut, useSession } from 'next-auth/react';
 
 function Header() {
+  const {data: session} = useSession();
+  console.log(session)
   return (
     <div className='shadow-sm border-b bg-white sticky top-0 z-50 '>
         <div className='flex justify-between max-w-6lg bg-white mx-5 lg:mx-auto my-2'>
@@ -38,16 +41,25 @@ function Header() {
           <div className='flex item-center justify-end space-x-4'>
           <HomeIcon className='navBtns'/>
           <MenuIcon className=' h-10 md:hidden cursor-pointer'/>
+          {session ? (
+            <>
+            <div className='relative navBtns'>
+            <PaperAirplaneIcon className='navBtns rotate-45'/>
+              <div className='absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex item-center animate-pulse justify-center text-white'>4</div>
+            </div>
+            
+            <PlusCircleIcon className='navBtns'/>
+            <UserGroupIcon className='navBtns'/>
+            <HeartIcon className='navBtns'/>
+            <img 
+            onClick={signOut}
+            className='h-10 w-10 rounded-full cursor-pointer border-gray-400 ' src={session.user.image} alt='PI'/>
+            </>
+          ):(
+            <button onClick={signIn}>SigIn</button>
+          )}
 
-          <div className='relative navBtns'>
-          <PaperAirplaneIcon className='navBtns rotate-45'/>
-            <div className='absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex item-center animate-pulse justify-center text-white'>4</div>
-          </div>
           
-          <PlusCircleIcon className='navBtns'/>
-          <UserGroupIcon className='navBtns'/>
-          <HeartIcon className='navBtns'/>
-          <img className='h-10 rounded-full cursor-pointer' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfZl1gpsXj18vbKomyh7dbjTH7OglE3IPh3v5OdkMomuvxRj_C8lKymIQtgdhmRI84gsM&usqp=CAU" alt='profile pic'/>
           </div>
          
         </div>           
