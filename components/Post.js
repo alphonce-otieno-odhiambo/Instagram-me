@@ -37,7 +37,11 @@ function Post({id,username,userImg,img ,caption}) {
         </p>
         {/**contents */}
         {/**input field */}
-        
+        <form>
+            <EmojiHappyIcon/>
+            <input type="text"/>
+            <button>Post</button>
+        </form>
         
     </div>
   )
