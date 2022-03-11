@@ -5,7 +5,7 @@ import Post from './Post'
 const posts = [
   {
 id:"123",
-usename: "alphonce",
+username: "alphonce",
 userImg:"https://links.papareact.com/3ke" ,
 img :"https://links.papareact.com/ocw",
 caption :"Subscribe and destroy the like btn"
@@ -25,7 +25,16 @@ function Posts() {
 
   return (
     <div>
-      <Post/>
+      {
+        posts.map((post)=> (
+          <Post key={post.id} id={post.id}
+           username={post.username}
+           userImg={post.userImg}
+           img={post.img} 
+           caption={post.caption} />
+        ))
+      }
+     
       <Post/>
       <Post/>
       <Post/>
