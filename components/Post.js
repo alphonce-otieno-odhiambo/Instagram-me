@@ -5,7 +5,7 @@ import {
     DotsHorizontalIcon,
     EmojiHappyIcon,
     HeartIcon,
-    PaperClipIcon,
+    PaperAirplaneIcon,
     
   } from "@heroicons/react/outline";
   import { HeartIcon as HeartIconFilled} from "@heroicons/react/solid"
@@ -23,6 +23,14 @@ function Post({id,username,userImg,img ,caption}) {
         {/**image */}
         <img src={img} className="object-cover w-full" alt=''/>
         {/**button */}
+        <div>
+           <HeartIcon className='btn'/> 
+           <ChatIcon/>
+           <PaperAirplaneIcon/>
+           <div>
+               <BookmarkIcon/>
+           </div>
+        </div>
         {/**caption */}
         {/**contents */}
         {/**input field */}
