@@ -37,9 +37,10 @@ function Post({id,username,userImg,img ,caption}) {
         </p>
         {/**contents */}
         {/**input field */}
-        <form>
-            <EmojiHappyIcon/>
-            <input type="text"/>
+        <form className='flex items-center p-4'>
+            <EmojiHappyIcon className='h-6'/>
+            <input type="text" className='border-none flex-1 focus:ring-0 outline-none'
+            placeholder='Add a comment...'/>
             <button>Post</button>
         </form>
         
