@@ -10,14 +10,16 @@ import {
   } from "@heroicons/react/outline";
   import { HeartIcon as HeartIconFilled} from "@heroicons/react/solid";
 import { useSession } from 'next-auth/react';
-import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from 'firebase/firestore';
+import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from 'firebase/firestore';
 import { useState , useEffect} from 'react';
 import { db} from '../firebase';
+import Moment from 'react-moment';
   
 function Post({id,username,userImg,img ,caption}) {
     const {data:session } = useSession();
     const [comment, setComment ] = useState("");
     const [comments, setComments ] = useState([]);
+    const [likes, setLikes] = useState([]);
 
     useEffect(
         () =>onSnapshot(
@@ -27,8 +29,19 @@ function Post({id,username,userImg,img ,caption}) {
                  ),
                  snapshot => setComments(snapshot.docs)
                  ) ,
-                 [db]);
-    
+                 [db, id]);
+
+    useEffect(
+        () =>onSnapshot(
+                collection(db, 'posts', id, 'likes'),
+                snapshot => setLikes(snapshot.docs)
+                ) ,
+                [db, id]);
+    const likePost = async () => {
+        await setDoc(doc(db,'posts', id, 'likes', session.user.uid),{
+            username: session.user.username,
+        })
+    };
 
     const sendComment = async (e) => {
         e.preventDefault();
@@ -59,7 +72,7 @@ function Post({id,username,userImg,img ,caption}) {
         {session && (
             <div className='flex justify-between px-4 pt-4 p-3'>
             <div className='flex space-x-3 '>
-                <HeartIcon className='btn'/> 
+                <HeartIcon onClick={likePost} className='btn'/> 
                 <ChatIcon className='btn'/>
                 <PaperAirplaneIcon className='btn'/>
             </div>
@@ -69,7 +82,7 @@ function Post({id,username,userImg,img ,caption}) {
         
         {/**caption */}
         <p className='p-5 trancate flex  space-x-2  items-center'>
-            <img className='h-7 rounded-full' src={userImg} alt=""/>
+            {/* <img className='h-7 rounded-full' src={userImg} alt=""/> */}
             <span className='font-bold mr-1'>{username} </span> {caption}
         </p>
         {/**contents */}
@@ -78,7 +91,10 @@ function Post({id,username,userImg,img ,caption}) {
                 {comments.map(comment => (
                     <div key={comment.id} className="flex items-center space-x-2 mb-3">
                         <img className='h-7 rounded-full' src={comment.data().userImg} alt=""/>
-                        <p><span className='font-bold'>{comment.data().username} </span>  {comment.data().comment} </p>
+                        <p className='text-sm flex-1'><span className='font-bold'>{comment.data().username} </span>  {comment.data().comment} </p>
+                        <Moment fromNow className='p-5 text-xs'>
+                        {comment.data().timestamp?.toDate()}
+                        </Moment>
                     </div>
                 ))}
             </div>
