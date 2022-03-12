@@ -9,7 +9,27 @@ import {
     
   } from "@heroicons/react/outline";
   import { HeartIcon as HeartIconFilled} from "@heroicons/react/solid"
+import { useSession } from 'next-auth/react';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+  
 function Post({id,username,userImg,img ,caption}) {
+    const {data:session } = useSession();
+    const [comment, setComment ] = useState("");
+    const [comments, setComments ] = useState([]);
+
+    const sendComment = async (e) => {
+        e.preventDefault();
+
+        const commentToSend = comment;
+        setComment("");
+
+        await addDoc(collection(db, 'posts', id, 'comments'),{
+            comment:commentToSend,
+            username: session.user.username,
+            userImg:session.user.image,
+            timestamp:serverTimestamp(),
+        })
+    }
   return (
     <div className='bg-white my-7 border p-0 '>
        
@@ -23,7 +43,8 @@ function Post({id,username,userImg,img ,caption}) {
         {/**image */}
         <img src={img} className="object-cover w-full" alt=''/>
         {/**button */}
-        <div className='flex justify-between px-4 pt-4 p-3'>
+        {session && (
+            <div className='flex justify-between px-4 pt-4 p-3'>
             <div className='flex space-x-3 '>
                 <HeartIcon className='btn'/> 
                 <ChatIcon className='btn'/>
@@ -31,18 +52,25 @@ function Post({id,username,userImg,img ,caption}) {
             </div>
             <BookmarkIcon className='btn'/>          
         </div>
+        )}
+        
         {/**caption */}
         <p className='p-5 trancate'>
             <span className='font-bold mr-1'>{username} </span> {caption}
         </p>
         {/**contents */}
         {/**input field */}
-        <form className='flex items-center p-4'>
+        {session && (
+            <form className='flex items-center p-4'>
             <EmojiHappyIcon className='h-6'/>
-            <input type="text" className='border-none flex-1 focus:ring-0 outline-none'
+            <input 
+            onChange={e => setComment(e.target.value)}
+            value={comment} type="text" className='border-none flex-1 focus:ring-0 outline-none'
             placeholder='Add a comment...'/>
-            <button>Post</button>
+            <button onClick={sendComment} type='submit' disabled={!comments.trim()} >Post</button>
         </form>
+        )}
+        
         
     </div>
   )
