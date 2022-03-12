@@ -7,7 +7,7 @@ import { Fragment, useRef} from 'react'
 
 function Modal() {
     const [open, setOpen] = useRecoilState(modalState);
-    
+    const filePikerRef = useRef(null);
   return (
     <Transition.Root show={open} as={Fragment} >
             <Dialog as='div' className="fixed z-10 inset-0 overflow-y-auto" 
@@ -60,7 +60,7 @@ function Modal() {
                                     </Dialog.Title>
                                     <div>
                                         <input
-                                        //ref={filePikerRef}
+                                        ref={filePikerRef}
                                         type="file"
                                         hidden
                                         //onChange={addImageToPost}
