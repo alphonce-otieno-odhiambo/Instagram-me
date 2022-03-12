@@ -6,7 +6,7 @@ import { CameraIcon } from '@heroicons/react/outline';
 import { Fragment, useRef, useState } from 'react'
 import { db, storage} from '../firebase';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
-import { ref } from 'firebase/storage';
+import { ref, getDownloadURL, uploadString } from 'firebase/storage';
 
 function Modal() {
     const [open, setOpen] = useRecoilState(modalState);
@@ -33,6 +33,11 @@ function Modal() {
         })
         console.log("New doc added with ID", docRef.id);
         const imageRef = ref(storage, `posts/${docRef.id}/image`);
+
+            await uploadString(imageRef, selectedFile, "data_url").then(async snapshot => {
+                
+            })
+
     }
 
     const addImageToPost = (e) => {
