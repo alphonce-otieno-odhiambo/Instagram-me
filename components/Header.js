@@ -55,7 +55,7 @@ const [open, setOpen] = useRecoilState(modalState);
               <div className='absolute -top-1 -right-2 text-xs w-5 h-5 bg-red-500 rounded-full flex item-center animate-pulse justify-center text-white'>4</div>
             </div>
             
-            <PlusCircleIcon className='navBtns'/>
+            <PlusCircleIcon onClick={() => setOpen(true)} className='navBtns'/>
             <UserGroupIcon className='navBtns'/>
             <HeartIcon className='navBtns'/>
             <img 
