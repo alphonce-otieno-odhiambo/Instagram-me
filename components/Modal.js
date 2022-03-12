@@ -4,13 +4,36 @@ import { modalState } from '../atoms/modalAtom';
 import { Dialog, Transition} from '@headlessui/react'
 import { CameraIcon } from '@heroicons/react/outline';
 import { Fragment, useRef, useState } from 'react'
+import { db, storage} from '../firebase';
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { ref } from 'firebase/storage';
 
 function Modal() {
     const [open, setOpen] = useRecoilState(modalState);
 
     const filePikerRef = useRef(null);
+    const captionRef = useRef(null);
 
     const [selectedFile, setSelectedFile] = useState(null);
+    const [loading, setLoading] = useState(null);
+
+    const uploadost = async () => {
+        if(loading) return ;
+        setLoading(true);
+
+        //create a post and add to firebse
+        //create a post import 
+        //upload the image 
+        //update the original post with image
+        const docRef = await addDoc(collection(db, 'posts'),{
+            username : session.user.username,
+            caption: captionRef.current.value,
+            profileImg: session.user.image,
+            timestamp: serverTimestamp()
+        })
+        console.log("New doc added with ID", docRef.id);
+        const imageRef = ref(storage, `posts/${docRef.id}/image`);
+    }
 
     const addImageToPost = (e) => {
         const reader = new FileReader();
@@ -90,7 +113,7 @@ function Modal() {
                                     <div className='mt-2'>
                                         <input className='border-none focus:ring-0 w-full text-center' 
                                         type="text"
-                                        // ref={captionRef}
+                                         ref={captionRef}
                                         placeholder='Please enter a caption...'
                                         />
 
