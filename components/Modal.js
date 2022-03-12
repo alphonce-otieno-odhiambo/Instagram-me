@@ -7,11 +7,20 @@ import { Fragment, useRef, useState } from 'react'
 
 function Modal() {
     const [open, setOpen] = useRecoilState(modalState);
-    const filePikerRef = useRef(null);
-    const [selectedFile, setSelectedFile] = useState(null);
-    const addImageToPost = (e) => {
 
-    }
+    const filePikerRef = useRef(null);
+
+    const [selectedFile, setSelectedFile] = useState(null);
+
+    const addImageToPost = (e) => {
+        const reader = new FileReader();
+        if (e.target.files[0]){
+            reader.readAsDataURL(e.target.files[0]);
+        }
+        reader.onload = (readerEvent) => {
+            setSelectedFile(readerEvent.target.result)
+        };
+    };
   return (
     <Transition.Root show={open} as={Fragment} >
             <Dialog as='div' className="fixed z-10 inset-0 overflow-y-auto" 
