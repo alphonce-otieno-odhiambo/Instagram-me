@@ -86,20 +86,19 @@ function Post({id,username,userImg,img ,caption}) {
         {/**button */}
         {session && (
             <div className='flex justify-between px-4 pt-4 p-3'>
-
-            <div className='flex space-x-3 '>
-                {
-                    hasLiked ? (
-                        <HeartIconFilled  onClick={likePost} className='btn text-red-500'/>
-                    ) : (
-                        <HeartIcon onClick={likePost} className='btn'/>
-                    )
-                }
-                <HeartIcon onClick={likePost} className='btn'/> 
-                <ChatIcon className='btn'/>
-                <PaperAirplaneIcon className='btn'/>
-            </div>
-            <BookmarkIcon className='btn'/>          
+                <div className='flex space-x-3 '>
+                    {
+                        hasLiked ? (
+                            <HeartIconFilled  onClick={likePost} className='btn text-red-500'/>
+                        ) : (
+                            <HeartIcon onClick={likePost} className='btn'/>
+                        )
+                    }
+                    
+                    <ChatIcon className='btn'/>
+                    <PaperAirplaneIcon className='btn'/>
+                </div>
+                <BookmarkIcon className='btn'/>          
         </div>
         )}
         

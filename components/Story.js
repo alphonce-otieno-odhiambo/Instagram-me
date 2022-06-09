@@ -9,4 +9,4 @@ function Story({img, username}) {
   )
 }
 
-export default Story
+export default Story;

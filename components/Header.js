@@ -40,13 +40,13 @@ const [open, setOpen] = useRecoilState(modalState);
           <div className='max-w-xs'>
           <div className='relative mt-1 pl-3 rounded-md '>
               <div className='absolute inset-y-0  pl-3 flex item-center pointer-events-none'>
-                <SearchIcon className='h-5 w-5 text-grey-500'/>
+                <SearchIcon className='h-5 w-5 text-grey-500 my-2'/>
               </div>
               <input className='bg-gray-100 block w-full pl-10 sm:text-sm border-gray focus:ring-black focus:border-black rounded-md' type="text" placeholder="search"/>
           </div>
           </div>
           <div className='flex item-center justify-end space-x-4'>
-          <HomeIcon onClick={()=> router.push('/')} className='navBtns'/>
+          <HomeIcon onClick={()=> router.push('/')} className='navBtns mt-2'/>
           <MenuIcon className=' h-10 md:hidden cursor-pointer'/>
           {session ? (
             <>
@@ -63,7 +63,9 @@ const [open, setOpen] = useRecoilState(modalState);
             className='h-10 w-10 rounded-full cursor-pointer border-gray-400 ' src={session.user.image} alt='PI'/>
             </>
           ):(
-            <button onClick={signIn}>SigIn</button>
+            <button 
+            className='pr-3 p-2 bg-gray-600 rounded-xl text-gray-900 text-bold'
+            onClick={signIn} >SigIn</button>
           )}
 
           
